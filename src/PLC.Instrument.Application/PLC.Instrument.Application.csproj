@@ -250,6 +250,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\Accounts\Dto\LoginInput.cs" />
     <Compile Include="InstrumentApplicationModule.cs" />
     <Compile Include="InstrumentAppServiceBase.cs" />
     <Compile Include="Authorization\Accounts\AccountAppService.cs" />

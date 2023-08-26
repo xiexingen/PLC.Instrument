@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using Abp.Dependency;
+using PLC.Instrument.Authorization.Accounts;
 using PLC.Instrument.Users;
 
 namespace PLC.Instrument.App
@@ -13,10 +16,13 @@ namespace PLC.Instrument.App
     public partial class MainWindow : Window, ISingletonDependency
     {
         private readonly IUserAppService _userAppService;
+        private readonly IAccountAppService _accountAppService;
 
-        public MainWindow(IUserAppService userAppService)
+        public MainWindow(IUserAppService userAppService,IAccountAppService accountAppService)
         {
             _userAppService = userAppService;
+            _accountAppService = accountAppService;
+
             InitializeComponent();
         }
 
@@ -47,6 +53,13 @@ namespace PLC.Instrument.App
             //    PeopleList.Items.Add(person.Name);
             //}
             //
+            var result = await _accountAppService.Login(new Authorization.Accounts.Dto.LoginInput()
+            {
+                UsernameOrEmailAddress = "admin",
+                Password = "Abcd1234",
+            });
+            Thread.CurrentPrincipal = new ClaimsPrincipal(result.Identity);
+
             var users =await _userAppService.GetAllAsync(new Abp.Application.Services.Dto.PagedResultRequestDto());
             MessageBox.Show(users.TotalCount.ToString()) ;
         }
