@@ -17,7 +17,8 @@ namespace PLC.Instrument
     {
         public override void PreInitialize()
         {
-            Configuration.Auditing.IsEnabledForAnonymousUsers = true;
+            Configuration.Auditing.IsEnabledForAnonymousUsers = false;
+            Configuration.Auditing.IsEnabled = false;
 
             //Declare entity types
             Configuration.Modules.Zero().EntityTypes.Tenant = typeof(Tenant);
@@ -26,6 +27,9 @@ namespace PLC.Instrument
 
             //Remove the following line to disable multi-tenancy.
             Configuration.MultiTenancy.IsEnabled = InstrumentConsts.MultiTenancyEnabled;
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
+
+            //Configuration.Localization.IsEnabled = false;
 
             //Add/remove localization sources here
             Configuration.Localization.Sources.Add(

@@ -4,7 +4,7 @@
     {
         public const string LocalizationSourceName = "Instrument";
 
-        public const bool MultiTenancyEnabled = true;
+        public const bool MultiTenancyEnabled = false;
         
         /// <summary>
         /// Default pass phrase for SimpleStringCipher decrypt/encrypt operations

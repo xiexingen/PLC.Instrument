@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using Abp.Dependency;
+using PLC.Instrument.Users;
 
 namespace PLC.Instrument.App
 {
@@ -10,28 +12,14 @@ namespace PLC.Instrument.App
     /// </summary>
     public partial class MainWindow : Window, ISingletonDependency
     {
-        //private readonly IPersonAppService _personAppService;
+        private readonly IUserAppService _userAppService;
 
-        //public MainWindow(IPersonAppService personAppService)
-        //{
-        //    _personAppService = personAppService;
-        //    InitializeComponent();
-        //}
-
-        private async void LoadAllPeopleButton_Click(object sender, RoutedEventArgs e)
+        public MainWindow(IUserAppService userAppService)
         {
-            //await LoadAllPeopleAsync();
+            _userAppService = userAppService;
+            InitializeComponent();
         }
 
-        private async Task LoadAllPeopleAsync()
-        {
-            //PeopleList.Items.Clear();
-            //var result = await _personAppService.GetAllPeopleAsync();
-            //foreach (var person in result.People)
-            //{
-            //    PeopleList.Items.Add(person.Name);
-            //}
-        }
 
         private async void AddNewPersonButton_Click(object sender, RoutedEventArgs e)
         {
@@ -48,6 +36,19 @@ namespace PLC.Instrument.App
             //{
             //    MessageBox.Show(ex.ToString());
             //}
+        }
+
+        private async void LoadAllUsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            //PeopleList.Items.Clear();
+            //var result = await _personAppService.GetAllPeopleAsync();
+            //foreach (var person in result.People)
+            //{
+            //    PeopleList.Items.Add(person.Name);
+            //}
+            //
+            var users =await _userAppService.GetAllAsync(new Abp.Application.Services.Dto.PagedResultRequestDto());
+            MessageBox.Show(users.TotalCount.ToString()) ;
         }
     }
 }
