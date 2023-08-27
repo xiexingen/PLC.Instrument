@@ -1,7 +1,7 @@
 
 基于 aspnetboilerplate 的基础用户、角色、权限系统
 
-技术栈: .net 4.x + sqlserver + entityframework 6.x + abp + WPF + HandyControl
+技术栈: .net 4.x + sqlserver + entityframework 6.x + abp + WPF + HandyControl + Prism
 
 # 开始
 

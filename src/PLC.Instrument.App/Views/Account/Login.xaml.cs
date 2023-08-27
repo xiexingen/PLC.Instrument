@@ -46,6 +46,11 @@ namespace PLC.Instrument.App.Account
             Thread.CurrentPrincipal =new ClaimsPrincipal(result.Identity);
         }
 
+        private void Close_Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         //public async Task<AjaxResponse> Authenticate(LoginModel loginModel)
         //{
         //    CheckModelState();
@@ -65,6 +70,6 @@ namespace PLC.Instrument.App.Account
         //    return new AjaxResponse(OAuthBearerOptions.AccessTokenFormat.Protect(ticket));
         //}
 
-       
+
     }
 }
